@@ -1,1 +1,5 @@
 eclipse.preferences.version=1
+encoding//src/gallery/ThemeManager.java=EUC-KR
+encoding//src/imageboard/FileUploadRequestWrapper.java=EUC-KR
+encoding//src/imageboard/ImageUtil.java=EUC-KR
+encoding/<project>=EUC-KR
