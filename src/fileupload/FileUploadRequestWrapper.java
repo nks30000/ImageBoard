@@ -10,13 +10,11 @@ import org.apache.commons.fileupload.FileUploadException;
 
 import java.util.Map;
 import java.util.HashMap;
+import java.io.UnsupportedEncodingException;
 import java.util.Enumeration;
 import java.util.Iterator;
 
-/**
- * FileUpload API를 사용하는 HttpServletRequestWrapper 클래스로서
- * HttpServletRequest에 기반한 API를 사용하기 위한 래퍼이다.
- */
+
 public class FileUploadRequestWrapper extends HttpServletRequestWrapper {
     
     private boolean multipart = false;
@@ -25,18 +23,18 @@ public class FileUploadRequestWrapper extends HttpServletRequestWrapper {
     private HashMap fileItemMap;
     
     public FileUploadRequestWrapper(HttpServletRequest request) 
-    throws FileUploadException{
+    throws FileUploadException, UnsupportedEncodingException{
         this(request, -1, -1, null);
     }
     
     public FileUploadRequestWrapper(HttpServletRequest request,
-        int threshold, int max, String repositoryPath) throws FileUploadException {
+        int threshold, int max, String repositoryPath) throws FileUploadException, UnsupportedEncodingException {
         super(request);
         
         parsing(request, threshold, max, repositoryPath);
     }
     private void parsing(HttpServletRequest request,
-        int threshold, int max, String repositoryPath) throws FileUploadException {
+        int threshold, int max, String repositoryPath) throws FileUploadException, UnsupportedEncodingException {
         
         if (FileUpload.isMultipartContent(request)) {
             multipart = true;
@@ -59,7 +57,7 @@ public class FileUploadRequestWrapper extends HttpServletRequestWrapper {
                 String name = fileItem.getFieldName();
                 
                 if (fileItem.isFormField()) {
-                    String value = fileItem.getString();
+                    String value = fileItem.getString("EUC-KR");
                     String[] values = (String[]) parameterMap.get(name);
                     if (values == null) {
                         values = new String[] { value };
@@ -74,7 +72,7 @@ public class FileUploadRequestWrapper extends HttpServletRequestWrapper {
                     fileItemMap.put(name, fileItem);
                 }
             }
-            addTo(); // request 속성으로 설정한다.
+            addTo(); // request ���깆�쇰� �ㅼ������.
         }
     }
     
@@ -130,7 +128,7 @@ public class FileUploadRequestWrapper extends HttpServletRequestWrapper {
     }
     
     /**
-     * 관련된 FileItem 들의 delete() 메소드를 호출한다.
+     * 愿��⑤�� FileItem �ㅼ�� delete() 硫�����瑜� �몄�����.
      */
     public void delete() {
         if (multipart) {
