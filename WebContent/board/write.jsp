@@ -1,5 +1,5 @@
 <%@ page contentType = "text/html; charset=euc-kr" %>
-<%@ page errorPage = "/error/error_view.jsp" %>
+<%@ page errorPage = "/board/error/error_view.jsp" %>
 
 <%@ page import = "java.sql.Timestamp" %>
 <%@ page import = "java.io.File" %>
@@ -15,7 +15,7 @@
 <%
     FileUploadRequestWrapper requestWrap = new FileUploadRequestWrapper(
         request, -1, -1,
-        "C:\\WorkspaceForJavaDeveloper\\App\\ImageBoard\\WebContent\\board\\temp");
+        "F://pds");
     HttpServletRequest tempRequest = request;
     request = requestWrap;
 %>
@@ -34,13 +34,13 @@
         
         // 이미지를 지정한 경로에 저장
         File imageFile = new File(
-            "C:\\WorkspaceForJavaDeveloper\\App\\ImageBoard\\WebContent\\board\\image",
+            "F:\\pds",
             image);
         // 같은 이름의 파일이름 처리
         if (imageFile.exists()) {
             for (int i = 0 ; true ; i++) {
                 imageFile = new File(
-                    "C:\\WorkspaceForJavaDeveloper\\App\\ImageBoard\\WebContent\\board\\image",
+                    "F:\\pds",
                     "("+i+")"+image);
                 if (!imageFile.exists()) {
                     image = "("+i+")"+image;
@@ -52,7 +52,7 @@
         
         // 썸네일 이미지 생성
         File destFile = new File(
-            "C:\\WorkspaceForJavaDeveloper\\App\\ImageBoard\\WebContent\\board\\image",
+            "F:\\pds",
             image+".small.jpg");
         ImageUtil.resize(imageFile, destFile, 50, ImageUtil.RATIO);
     }

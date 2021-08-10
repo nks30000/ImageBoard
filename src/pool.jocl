@@ -2,8 +2,8 @@
 
   <object class="org.apache.commons.dbcp.DriverManagerConnectionFactory">
     <string value="jdbc:oracle:thin:@localhost:1521:XE" />
-    <string value="ezz" />
-    <string value="oracle" />
+    <string value="luvoasis" />
+    <string value="oracle" /> 
   </object>
  
   <object class="org.apache.commons.pool.impl.GenericObjectPool">

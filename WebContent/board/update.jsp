@@ -1,5 +1,5 @@
 <%@ page contentType = "text/html; charset=euc-kr" %>
-<%@ page errorPage = "/error/error_view.jsp" %>
+<%@ page errorPage = "/board/error/error_view.jsp" %>
 
 <%@ page import = "java.io.File" %>
 <%@ page import = "org.apache.commons.fileupload.FileItem" %>
